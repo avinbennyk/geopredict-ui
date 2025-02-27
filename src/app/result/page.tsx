@@ -85,20 +85,15 @@ export default function Result() {
 
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center">
-      {/* Background Image */}
-      <div className="absolute top-0 left-0 w-full h-full bg-cover bg-center" 
-        style={{ backgroundImage: `url('/background-image.jpg')` }}
-      />
+      {/* Background Video - Loops Continuously */}
+      <video autoPlay loop muted className="absolute top-0 left-0 w-full h-full object-cover">
+        <source src="/background-video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
 
       {/* Logo in Top-Left (Circular) */}
       <div className="absolute top-6 left-6">
-        <Image
-          src="/logo.png"
-          alt="GeoPredict Logo"
-          width={70}
-          height={70}
-          className="rounded-full border-4 border-white shadow-lg"
-        />
+        <Image src="/logo.png" alt="GeoPredict Logo" width={70} height={70} className="rounded-full border-4 border-white shadow-lg" />
       </div>
 
       {/* Compact Glassmorphism Result Block */}
@@ -111,14 +106,10 @@ export default function Result() {
         {/* Gauge Meter (Semi-Circle with Adjusted Needle) */}
         <div className="relative w-44 mx-auto mt-6 transition-all duration-300 hover:scale-105">
           <Doughnut data={data} options={options} plugins={[needlePlugin]} />
-          {/* Confidence Value Below Needle with More Gap */}
           {/* Confidence Value Below Needle - Moved Higher */}
-        {/* Confidence Value Below Needle - Moved Even Higher */}
-        <div className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-white text-lg font-bold">
+          <div className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-white text-lg font-bold">
             {confidence}%
-        </div>
-
-
+          </div>
         </div>
 
         {/* Increased Margin to Prevent Overlapping */}
