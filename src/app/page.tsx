@@ -112,7 +112,7 @@ export default function Home() {
         {error && <p className="text-red-500 text-sm mt-2 text-center">{error}</p>}
 
         {/* Analyze Button */}
-        <button onClick={handleAnalyze} disabled={loading || error || (!city && (!latitude || !longitude))}
+        <button onClick={handleAnalyze} disabled={Boolean(loading || error || (!city && (!latitude || !longitude)))}
           className={`w-full mt-8 flex justify-center items-center bg-gradient-to-r from-blue-500 to-purple-500 text-white py-4 rounded-full text-xl font-semibold transition-all duration-300 shadow-lg ${
             loading || error || (!city && (!latitude || !longitude)) 
               ? "opacity-50 cursor-not-allowed" 
