@@ -12,7 +12,7 @@ export default function Home() {
   const [error, setError] = useState(""); // Input validation error
   const router = useRouter();
 
-  const BACKEND_URL = "http://localhost:8000"; // Replace with actual backend URL
+  const BACKEND_URL = "http://localhost:8000"; // Corrected backend URL
 
   const validateInputs = () => {
     if (city && (latitude || longitude)) {
@@ -30,7 +30,7 @@ export default function Home() {
     setLoading(true);
 
     try {
-      const response = await fetch(`${BACKEND_URL}/predict`, {
+      const response = await fetch(`${BACKEND_URL}/predictions/`, {  // Corrected API endpoint
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ city, latitude, longitude }),
@@ -40,7 +40,10 @@ export default function Home() {
 
       const data = await response.json();
 
-      router.push(`/result?city=${city}&latitude=${latitude}&longitude=${longitude}&confidence=${data.confidence}&status=${data.status}&temperature=${data.temperature}&humidity=${data.humidity}&wind_speed=${data.wind_speed}&rainfall=${data.rainfall}&air_quality=${data.air_quality}&pressure=${data.pressure}&uv_index=${data.uv_index}&visibility=${data.visibility}`);
+      // Navigate to result page with query params
+      router.push(
+        `/result?location=${city}&latitude=${latitude}&longitude=${longitude}&confidence=${data.confidence}&prediction=${data.prediction}&weather=${encodeURIComponent(JSON.stringify(data.weather_details))}`
+      );
     } catch (error) {
       console.error("Error fetching prediction:", error);
       alert("Failed to get prediction. Please try again.");
