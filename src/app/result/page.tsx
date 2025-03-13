@@ -44,7 +44,7 @@ export default function Result() {
         },
         {
           title: "Wind Speed",
-          value: `${weather_details.wind_speed || "--"} km/h`,
+          value: `${weather_details.wind_speed || "0"} km/h`,
           icon: "/icons/wind.png",
         },
         {
