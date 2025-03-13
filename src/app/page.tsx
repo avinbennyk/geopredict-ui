@@ -31,12 +31,10 @@ export default function Home() {
     if (!validateInputs() || (!city && (!latitude || !longitude))) return;
 
     setLoading(true);
-    ``;
-
     try {
-
+      const location = city ? { location: city } : { latitude, longitude };
       const send_data = {
-        location: city,
+        ...location,
       };
 
       const server_data = await axios.post(
@@ -51,7 +49,7 @@ export default function Home() {
       );
 
       console.log(server_data);
-      if(server_data){
+      if (server_data) {
         localStorage.setItem("data", JSON.stringify(server_data.data));
         router.push("/result");
       }
