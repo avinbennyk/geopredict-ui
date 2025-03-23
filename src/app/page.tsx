@@ -192,7 +192,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="absolute bottom-4 text-white/80 text-sm">
-        © {new Date().getFullYear()} GeoPredict. All rights reserved.
+        © {new Date().getFullYear()} GeoPredict. All rights are reserved.
       </footer>
     </div>
   );
